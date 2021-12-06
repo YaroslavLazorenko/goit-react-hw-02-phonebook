@@ -10,12 +10,20 @@ import './App.css';
 class App extends Component {
   state = { contacts: [], filter: '' };
 
+  isContactAlreadySaved = name => {
+    return this.state.contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase());
+  };
+
   updateContacts = (name, number) => {
-    this.setState(prevState => {
-      return {
-        contacts: [...prevState.contacts, { id: nanoid(), name, number }],
-      };
-    });
+    if (this.isContactAlreadySaved(name)) {
+      return alert(`${name} is already in contacts.`);
+    } else {
+      this.setState(prevState => {
+        return {
+          contacts: [...prevState.contacts, { id: nanoid(), name, number }],
+        };
+      });
+    }
   };
 
   updateFilter = value => {
