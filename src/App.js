@@ -10,6 +10,13 @@ import './App.css';
 class App extends Component {
   state = { contacts: [], filter: '' };
 
+  deleteContact = id => {
+    const contactsAfterDelete = this.state.contacts.reduce((acc, contact) => {
+      return contact.id !== id ? [...acc, contact] : acc;
+    }, []);
+    this.setState({ contacts: contactsAfterDelete });
+  };
+
   isContactAlreadySaved = name => {
     return this.state.contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase());
   };
@@ -40,7 +47,7 @@ class App extends Component {
 
         <h2>Contacts</h2>
         <Filter filter={filter} changeFiler={this.updateFilter} />
-        <ContactList contacts={contacts} filter={filter} />
+        <ContactList contacts={contacts} filter={filter} deleteContact={this.deleteContact} />
       </div>
     );
   }

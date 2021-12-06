@@ -3,11 +3,14 @@ import { s } from './ContactItem.module.css';
 
 class ContactItem extends Component {
   render() {
-    const { contact } = this.props;
+    const { contact, deleteContact } = this.props;
 
     return (
       <li>
-        {contact.name}:{contact.number}
+        <span>
+          {contact.name}:{contact.number}
+        </span>
+        <button onClick={() => deleteContact(contact.id)}>Delete</button>
       </li>
     );
   }
