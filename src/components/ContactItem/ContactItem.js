@@ -1,16 +1,28 @@
 import { Component } from 'react';
-import { s } from './ContactItem.module.css';
+import { PropTypes } from 'prop-types';
+import s from './ContactItem.module.css';
 
 class ContactItem extends Component {
+  static propTypes = {
+    contact: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    }),
+    deleteContact: PropTypes.func.isRequired,
+  };
+
   render() {
     const { contact, deleteContact } = this.props;
 
     return (
-      <li>
-        <span>
-          {contact.name}:{contact.number}
+      <li className={s.contactItem}>
+        <span className={s.contactText}>
+          {contact.name}: {contact.number}
         </span>
-        <button onClick={() => deleteContact(contact.id)}>Delete</button>
+        <button className={s.button} onClick={() => deleteContact(contact.id)}>
+          Delete
+        </button>
       </li>
     );
   }

@@ -1,7 +1,13 @@
 import { Component } from 'react';
-import { s } from './Filter.module.css';
+import { PropTypes } from 'prop-types';
+import s from './Filter.module.css';
 
 class Filter extends Component {
+  static propTypes = {
+    filter: PropTypes.string.isRequired,
+    changeFiler: PropTypes.func.isRequired,
+  };
+
   handleChange = ({ target }) => {
     const { value } = target;
 
@@ -13,8 +19,9 @@ class Filter extends Component {
 
     return (
       <>
-        <p>Find contacts by name</p>
+        <p className={s.title}>Find contacts by name</p>
         <input
+          className={s.inputField}
           type="text"
           name="filter"
           placeholder="Enter name"

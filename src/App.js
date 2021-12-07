@@ -5,8 +5,6 @@ import Filter from './components/Filter';
 import ContactList from './components/ContactList';
 import './App.css';
 
-// const INITIAL_FORM_STATE = { name: '', number: '' };
-
 class App extends Component {
   state = { contacts: [], filter: '' };
 
@@ -42,10 +40,10 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1>Phonebook</h1>
+        <h1 className="phonebookTitle">Phonebook</h1>
         <ContactForm changeContacts={this.updateContacts} />
 
-        <h2>Contacts</h2>
+        <h2 className="contactsTitle">Contacts</h2>
         <Filter filter={filter} changeFiler={this.updateFilter} />
         <ContactList contacts={contacts} filter={filter} deleteContact={this.deleteContact} />
       </div>
